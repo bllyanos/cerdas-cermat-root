@@ -6,14 +6,14 @@ import java.sql.ResultSet;
 
 public class Soal {
     private String soal[][] = new String[10][2];
-
-    public Soal(){
+    private char kodeSoal;
+    public Soal(char kodeSoal){
         ResultSet rs;
         PreparedStatement ps;
         Connection con;
         try{
             con = ProjectCC.kon.getKoneksi();
-            String sql = "select * from soal_bs = S, paket_soal = P where(S.no_soal = P.no_soal)";
+            String sql = "select * from soal_bs = S, paket_soal = P where(S.no_soal = P.no_soal) and (P.kode_soal = "+kodeSoal+")";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             int i = 0;
